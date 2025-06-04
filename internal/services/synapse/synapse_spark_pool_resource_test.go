@@ -55,7 +55,7 @@ func TestAccSynapseSparkPool_complete(t *testing.T) {
 
 	data.ResourceTest(t, r, []acceptance.TestStep{
 		{
-			Config: r.complete(data, "3.4"),
+			Config: r.complete(data, "3.5"),
 			Check: acceptance.ComposeTestCheckFunc(
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
@@ -78,7 +78,7 @@ func TestAccSynapseSparkPool_update(t *testing.T) {
 		},
 		data.ImportStep("spark_events_folder", "spark_log_folder"),
 		{
-			Config: r.complete(data, "3.4"),
+			Config: r.complete(data, "3.5"),
 			Check: acceptance.ComposeTestCheckFunc(
 				check.That(data.ResourceName).ExistsInAzure(r),
 			),
@@ -223,7 +223,7 @@ resource "azurerm_synapse_spark_pool" "test" {
   node_size_family     = "MemoryOptimized"
   node_size            = "Small"
   node_count           = 3
-  spark_version        = "3.4"
+  spark_version        = "3.5"
 }
 `, template, data.RandomString)
 }
