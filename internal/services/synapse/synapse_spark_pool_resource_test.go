@@ -123,6 +123,14 @@ func TestAccSynapseSparkPool_sparkVersion(t *testing.T) {
 		},
 		// not returned by service
 		data.ImportStep("spark_events_folder", "spark_log_folder"),
+		{
+			Config: r.sparkVersion(data, "3.5"),
+			Check: acceptance.ComposeTestCheckFunc(
+				check.That(data.ResourceName).ExistsInAzure(r),
+			),
+		},
+		// not returned by service
+		data.ImportStep("spark_events_folder", "spark_log_folder"),
 	})
 }
 
@@ -314,7 +322,7 @@ resource "azurerm_synapse_spark_pool" "test" {
   node_size                 = "XXXLarge"
   node_count                = 3
   compute_isolation_enabled = true
-  spark_version             = "3.4"
+  spark_version             = "3.5"
 }
 `, template, data.RandomString)
 }
